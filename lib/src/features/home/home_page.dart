@@ -27,10 +27,16 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: IndexedStack(
         index: selectedTab.index,
-        children: const [MoviesPage(), TvsPage(), ProfilePage()],
+        children: const [
+          MoviesPage(),
+          TvsPage(),
+          ProfilePage(),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
+        elevation: 2,
+        color: Colors.black,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -38,17 +44,23 @@ class HomeView extends StatelessWidget {
             _HomeTabButton(
               groupValue: selectedTab,
               value: HomeTab.movies,
-              icon: const Icon(Icons.movie_filter_outlined),
+              icon: const Icon(
+                Icons.movie_filter_outlined,
+              ),
             ),
             _HomeTabButton(
               groupValue: selectedTab,
               value: HomeTab.tvs,
-              icon: const Icon(Icons.tv),
+              icon: const Icon(
+                Icons.tv,
+              ),
             ),
             _HomeTabButton(
               groupValue: selectedTab,
               value: HomeTab.profile,
-              icon: const Icon(Icons.person_outlined),
+              icon: const Icon(
+                Icons.person_outlined,
+              ),
             ),
           ],
         ),
@@ -73,8 +85,9 @@ class _HomeTabButton extends StatelessWidget {
     return IconButton(
       onPressed: () => context.read<HomeCubit>().setTab(value),
       iconSize: 32,
-      color:
-          groupValue != value ? null : Theme.of(context).colorScheme.secondary,
+      color: groupValue != value
+          ? Colors.white
+          : Theme.of(context).colorScheme.secondary,
       icon: icon,
     );
   }
