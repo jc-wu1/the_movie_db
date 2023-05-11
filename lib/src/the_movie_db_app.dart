@@ -10,7 +10,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
+        useMaterial3: true,
+        canvasColor: const Color(0xff161616),
+
+        ///here
       ),
       home: const HomePage(),
     );

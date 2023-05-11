@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:the_movie_db/src/core/injector.dart';
+import 'package:the_movie_db/src/features/movie/display/movie_page.dart';
 import 'package:the_movie_db/src/features/movies/domain/usecase/get_popular_movies_usecase.dart';
 import 'package:the_movie_db/src/features/movies/domain/usecase/get_upcoming_movies_usecase.dart';
 
@@ -91,14 +92,10 @@ class MoviesView extends StatelessWidget {
                       itemCount: 10,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Image.network(
-                              imgBaseUrl + state.movies[index].posterPath!,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        return MovieContainer(
+                          movieId: state.movies[index].id!,
+                          posterUrl:
+                              '$imgBaseUrl${state.movies[index].posterPath}',
                         );
                       },
                     ),
@@ -145,14 +142,10 @@ class MoviesView extends StatelessWidget {
                       itemCount: 10,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Image.network(
-                              imgBaseUrl + state.movies[index].posterPath!,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        return MovieContainer(
+                          movieId: state.movies[index].id!,
+                          posterUrl:
+                              '$imgBaseUrl${state.movies[index].posterPath}',
                         );
                       },
                     ),
@@ -199,14 +192,10 @@ class MoviesView extends StatelessWidget {
                       itemCount: 10,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (BuildContext context, int index) {
-                        return Card(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width / 2,
-                            child: Image.network(
-                              imgBaseUrl + state.movies[index].posterPath!,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
+                        return MovieContainer(
+                          movieId: state.movies[index].id!,
+                          posterUrl:
+                              '$imgBaseUrl${state.movies[index].posterPath}',
                         );
                       },
                     ),
@@ -219,6 +208,41 @@ class MoviesView extends StatelessWidget {
               },
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class MovieContainer extends StatelessWidget {
+  const MovieContainer({
+    super.key,
+    required this.movieId,
+    required this.posterUrl,
+  });
+
+  final int movieId;
+  final String posterUrl;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: InkWell(
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => MoviePage(
+                movieId: movieId,
+              ),
+            ),
+          );
+        },
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width / 2,
+          child: Image.network(
+            posterUrl,
+            fit: BoxFit.cover,
+          ),
         ),
       ),
     );

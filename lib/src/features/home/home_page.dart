@@ -35,8 +35,8 @@ class HomeView extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        elevation: 2,
-        color: Colors.black,
+        color: const Color(0xff212121),
+        surfaceTintColor: const Color(0xff212121),
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,6 +47,7 @@ class HomeView extends StatelessWidget {
               icon: const Icon(
                 Icons.movie_filter_outlined,
               ),
+              tooltip: 'Movies',
             ),
             _HomeTabButton(
               groupValue: selectedTab,
@@ -54,6 +55,7 @@ class HomeView extends StatelessWidget {
               icon: const Icon(
                 Icons.tv,
               ),
+              tooltip: 'TVs',
             ),
             _HomeTabButton(
               groupValue: selectedTab,
@@ -61,6 +63,7 @@ class HomeView extends StatelessWidget {
               icon: const Icon(
                 Icons.person_outlined,
               ),
+              tooltip: 'Profile',
             ),
           ],
         ),
@@ -74,21 +77,22 @@ class _HomeTabButton extends StatelessWidget {
     required this.groupValue,
     required this.value,
     required this.icon,
+    this.tooltip,
   });
 
   final HomeTab groupValue;
   final HomeTab value;
   final Widget icon;
+  final String? tooltip;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () => context.read<HomeCubit>().setTab(value),
       iconSize: 32,
-      color: groupValue != value
-          ? Colors.white
-          : Theme.of(context).colorScheme.secondary,
+      color: groupValue != value ? Colors.white : Colors.indigo,
       icon: icon,
+      tooltip: tooltip,
     );
   }
 }
