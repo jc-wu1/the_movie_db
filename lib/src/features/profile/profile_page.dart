@@ -6,14 +6,17 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text('Julian C. (DEADLINE - Belum Selesai)'),
-          Text(' Featured: '),
-          Text('- clean architecture'),
-          Text('- dependencies injection'),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: const [
+            Text('Julian C. (DEADLINE - Belum Selesai)'),
+            Text(' Featured: '),
+            Text('- Clean architecture'),
+            Text('- Dependencies injection'),
+          ],
+        ),
       ),
     );
   }
