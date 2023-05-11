@@ -15,6 +15,7 @@ class ProfilePage extends StatelessWidget {
             Text(' Featured: '),
             Text('- Clean architecture'),
             Text('- Dependencies injection'),
+            Text('NOTE: Masih banyak yang bisa diimprove'),
           ],
         ),
       ),
